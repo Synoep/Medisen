@@ -1,0 +1,9 @@
+.center {
+  text-align: center;
+}
+
+.servicesContainer {
+  width: 600px;
+  height: 300px;
+  background-color: #ffffff;
+}

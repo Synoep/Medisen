@@ -1,0 +1,57 @@
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  gap: 50px;
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imgContainer {
+  width: auto;
+  height: auto;
+  display: block;
+  max-height: 400px;
+  max-width: 500px;
+  margin-left: 50px;
+}
+
+.flexbox {
+  display: flex;
+  margin: 50px;
+  overflow-x: hidden;
+}
+
+.feature {
+  width: 75px;
+  height: 65px;
+  border-radius: 75px 75px 80% 80%;
+}
+
+.icon {
+  position: relative;
+  top: 25px;
+  left: 30px;
+}
+
+.hide {
+  display: none;
+}
+
+.btn {
+  padding: 20px 40px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: #fc8621;
+  font-family: "Montserrat";
+  font-size: large;
+  font-weight: 700;
+}

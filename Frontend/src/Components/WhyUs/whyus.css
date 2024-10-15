@@ -1,0 +1,15 @@
+.points {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.iconContainer {
+  width: 75px;
+  color: #fc8621;
+  font-size: 40px;
+}
+
+.imageContainer {
+  width: 600px;
+  height:490px;
+}

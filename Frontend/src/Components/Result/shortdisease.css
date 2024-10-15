@@ -1,0 +1,25 @@
+/* ShortDisease.css */
+.short-disease {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 5px; /* Optional rounded corners */
+    margin-bottom: 10px; /* Space between diseases */
+    background-color: #f9f9f9; /* Light background color */
+  }
+  
+  .add-symptom-button {
+    background-color: #3498db; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .add-symptom-button:hover {
+    background-color: #2980b9; /* Darker button color on hover */
+  }
+  

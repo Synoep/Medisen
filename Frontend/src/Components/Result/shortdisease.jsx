@@ -7,7 +7,7 @@ const ShortDisease = ({ disease, symptoms, updateList, trackList }) => {
     <div className="short-disease">
         
       <p>
-        <strong>{disease}</strong>: {symptoms.join(', ')}
+        <strong>{disease}</strong>: 
       </p>
      
     </div>

@@ -5,11 +5,9 @@ import './shortdisease.css'; // Optional: For custom styling
 const ShortDisease = ({ disease, symptoms, updateList, trackList }) => {
   return (
     <div className="short-disease">
-        
       <p>
-        <strong>{disease}</strong>: 
+        <strong>{disease}</strong>: {symptoms.join(', ')}
       </p>
-     
     </div>
   );
 };

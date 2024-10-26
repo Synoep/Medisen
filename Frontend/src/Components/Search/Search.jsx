@@ -6,7 +6,7 @@ import Result from "../Result/Result";
 import { sym } from "./data";
 import ShortDisease from "../Result/shortdisease";
 const Search = () => {
-  // const valueGabber = useRef("");
+
   const [isScreenLarge, setIsScreenLarge] = useState(false);
   useEffect(() => {
     function handleResize() {
@@ -14,7 +14,7 @@ const Search = () => {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // call once initially
+    handleResize(); 
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -60,8 +60,8 @@ const Search = () => {
     if (newList.includes(value)) {
       const index = newList.indexOf(value);
       if (index > -1) {
-        // only splice array when item is found
-        newList.splice(index, 1); // 2nd parameter means remove one item only
+      
+        newList.splice(index, 1); 
       }
 
       setTrackList(newList);
@@ -190,7 +190,7 @@ const Search = () => {
       </div>
 
       <div className="resultContainer">
-        {/* Display the top disease separately if it exists */}
+    
         {predictedList.length > 0 && (
           <div className="topDisease">
             <Result
@@ -203,7 +203,7 @@ const Search = () => {
           </div>
         )}
 
-        {/* Display the remaining diseases in another div */}
+        
         {predictedList.length > 1 && (
           <div className="otherDiseases">
              <h3 className="otherdisease">Other Related Diseases are :</h3>
@@ -236,7 +236,7 @@ const Heading = () => {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // call once initially
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);

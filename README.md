@@ -32,32 +32,48 @@ Medisen is designed to assist users by suggesting potential health conditions ba
 - Node.js and npm for frontend
 - Python 3.8+ for backend
 - Flask, Pandas, Scikit-learn, Flask-CORS libraries
+# Project Setup Guide
 
 ## Backend Setup
 
-### Clone the repository
+### 1. Clone the Repository
+```bash
 git clone https://github.com/username/medisen.git
 cd medisen/backend
+```
 
-### Install Python dependencies
+### 2. Install Python Dependencies
+```bash
 pip install -r requirements.txt
+```
 
-### Place your dataset in the backend folder'
+### 3. Place Dataset in Backend Folder
+- Ensure your dataset file is named `dis_sym_dataset_comb.csv` and place it in the `backend` folder.
 
-### Run the Flask server
-python app.py
+### 4. Run the Flask Server
+```bash
+python server.py
+```
+- The backend server should now be running on [http://localhost:5000](http://localhost:5000).
 
-### The backend server should now be running on http://localhost:5000
+---
 
 ## Frontend Setup
 
-### Navigate to the frontend directory
+### 1. Navigate to the Frontend Directory
+```bash
 cd ../frontend
+```
 
-### Install frontend dependencies
+### 2. Install Frontend Dependencies
+```bash
 npm install
+```
 
-### Start the React development server
-npm start
+### 3. Start the React Development Server
+```bash
+npm run dev
+```
+---
 
-### The frontend should now be running on http://localhost:3000
+## Screenshots

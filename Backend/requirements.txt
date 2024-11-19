@@ -1,5 +1,6 @@
 Flask
 scikit-learn
-pandas 
+pandas
 Flask-Cors
 werkzeug
+gunicorn

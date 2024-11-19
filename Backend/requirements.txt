@@ -3,3 +3,4 @@ scikit-learn
 pandas
 Flask-Cors
 werkzeug
+gunicorn

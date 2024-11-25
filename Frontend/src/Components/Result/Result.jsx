@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./result.css";
 
-const Result = ({ disease, sym = [], updateList, trackList }) => {
+const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
   const [isScreenLarge, setIsScreenLarge] = useState(false);
-  
+
   useEffect(() => {
     function handleResize() {
       setIsScreenLarge(window.innerWidth > 1083);
@@ -16,26 +16,53 @@ const Result = ({ disease, sym = [], updateList, trackList }) => {
   }, []);
 
   return (
-
     <div className="container1">
-     { console.log(sym)}
       <h2>{disease}</h2>
-      <p>Symptoms of {disease} :</p>
+      <p>Symptoms of {disease}:</p>
       <div className="flex">
-        {Array.isArray(sym) && sym.map((item, index) => {
-          const isInList = trackList.includes(item);
-          return (
-            <button
-              className={isInList ? "selectContainer2" : "container2"}
-              onClick={updateList}
-              data-value={item}
-              key={index}
-            >
-              {item}
-            </button>
-          );
-        })}
+        {Array.isArray(sym) &&
+          sym.map((item, index) => {
+            const isInList = trackList.includes(item);
+            return (
+              <button
+                className={isInList ? "selectContainer2" : "container2"}
+                onClick={updateList}
+                data-value={item}
+                key={index}
+              >
+                {item}
+              </button>
+            );
+          })}
       </div>
+
+      {console.log(doctors)}
+      {doctors && doctors.length > 0 && (
+        <div className="doctorInfo">
+          <h4>Recommended Doctors:</h4>
+          <div className="doctorList">
+            {doctors.length > 2 ? (
+              <div className="scrollableDoctors">
+                {doctors.map((doctor, index) => (
+                  <div key={index} className="doctorCard">
+                    <p className="doctorName">{doctor.name}</p>
+                    <p className="doctorSpecialty">{doctor.contact}</p>
+                    
+                  </div>
+                ))}
+              </div>
+            ) : (
+              doctors.map((doctor, index) => (
+                <div key={index} className="doctorCard">
+                  <p className="doctorName">{doctor.name}</p>
+                  <p className="doctorSpecialty">{doctor.specialty}</p>
+                  <p className="doctorLocation">{doctor.location}</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

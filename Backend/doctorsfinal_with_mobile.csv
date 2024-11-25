@@ -1,0 +1,153 @@
+DoctorName,Specialty,City,IndianMobileNumber
+Dr. Aarav Sharma,Cardiologist,Mumbai,8573319767
+Dr. Riya Desai,Dermatologist,Pune,7151151158
+Dr. Sameer Patil,Neurologist,Nagpur,7627437676
+Dr. Neha Iyer,Pediatrician,Mumbai,6681485474
+Dr. Pranav Joshi,Orthopedic Surgeon,Pune,8578553988
+Dr. Meera Rao,Endocrinologist,Nagpur,9268849119
+Dr. Karan Kulkarni,Gastroenterologist,Mumbai,8548861013
+Dr. Vikram Singh,Oncologist,Pune,9849046955
+Dr. Tanvi Nair,Pulmonologist,Nagpur,8301440508
+Dr. Deepak Verma,Psychiatrist,Mumbai,6485404854
+Dr. Ananya Kapoor,Cardiologist,Pune,7721199167
+Dr. Suresh Bhatia,Dermatologist,Nagpur,8559013791
+Dr. Rahul Choudhary,Neurologist,Mumbai,7768954819
+Dr. Nisha Salunkhe,Pediatrician,Pune,9763497116
+Dr. Priya Rane,Orthopedic Surgeon,Nagpur,8390400830
+Dr. Mohan Deshmukh,Endocrinologist,Mumbai,6605093206
+Dr. Kavita Gokhale,Gastroenterologist,Pune,7808634162
+Dr. Vinay Menon,Oncologist,Nagpur,9389276348
+Dr. Tanya Dixit,Pulmonologist,Mumbai,9225773528
+Dr. Dev Rajput,Psychiatrist,Pune,7127141926
+Dr. Aditi Pandey,Cardiologist,Nagpur,8060245267
+Dr. Sneha Jadhav,Dermatologist,Mumbai,9117114496
+Dr. Ravi Nair,Neurologist,Pune,7925446610
+Dr. Neelam Bhosale,Pediatrician,Nagpur,6844539412
+Dr. Prakash Pawar,Orthopedic Surgeon,Mumbai,8302961438
+Dr. Madhuri Kale,Endocrinologist,Pune,7093249782
+Dr. Kunal Desai,Gastroenterologist,Nagpur,6047414142
+Dr. Varun Dani,Oncologist,Mumbai,8072799404
+Dr. Tanisha Iyer,Pulmonologist,Pune,9981588733
+Dr. Dinesh Kulkarni,Psychiatrist,Nagpur,6631283097
+Dr. Aakash Roy,Cardiologist,Mumbai,7059177731
+Dr. Sanya Sharma,Dermatologist,Pune,7120930763
+Dr. Rohan Joshi,Neurologist,Nagpur,8168676451
+Dr. Nandini Iyer,Pediatrician,Mumbai,7786460228
+Dr. Pradeep Rane,Orthopedic Surgeon,Pune,7954495838
+Dr. Manisha Patil,Endocrinologist,Nagpur,8260671413
+Dr. Karan Nair,Gastroenterologist,Mumbai,6145795712
+Dr. Vikrant Sinha,Oncologist,Pune,7012578347
+Dr. Tania Ghosh,Pulmonologist,Nagpur,9942579603
+Dr. Deep Chatterjee,Psychiatrist,Mumbai,9431996630
+Dr. Aishwarya Verma,Cardiologist,Pune,8325007641
+Dr. Suresh Joshi,Dermatologist,Nagpur,9980470363
+Dr. Raghav Patil,Neurologist,Mumbai,8736309155
+Dr. Neha Bhosale,Pediatrician,Pune,7795333700
+Dr. Pranav More,Orthopedic Surgeon,Nagpur,9139645676
+Dr. Meenal Deshmukh,Endocrinologist,Mumbai,9466354152
+Dr. Kiran Kulkarni,Gastroenterologist,Pune,6718214801
+Dr. Vikas Rao,Oncologist,Nagpur,7700144153
+Dr. Tushar Iyer,Pulmonologist,Mumbai,6598010577
+Dr. Disha Singh,Psychiatrist,Pune,8387264269
+Dr. Aarav Gupta,Cardiologist,Nagpur,6748920111
+Dr. Riya Mehta,Dermatologist,Mumbai,8503378937
+Dr. Sameer Patil,Neurologist,Pune,7292674770
+Dr. Neha Sharma,Pediatrician,Nagpur,9603451329
+Dr. Pranav Joshi,Orthopedic Surgeon,Mumbai,8904489682
+Dr. Meera Deshmukh,Endocrinologist,Pune,8447918696
+Dr. Karan Gokhale,Gastroenterologist,Nagpur,6884798960
+Dr. Vikram Menon,Oncologist,Mumbai,6752558801
+Dr. Tanvi Dixit,Pulmonologist,Pune,6389368142
+Dr. Deepak Rajput,Psychiatrist,Nagpur,7903403408
+Dr. Ananya Kapoor,Cardiologist,Mumbai,8254017122
+Dr. Suresh Bhatia,Dermatologist,Pune,9540471935
+Dr. Rahul Choudhary,Neurologist,Nagpur,7464515730
+Dr. Nisha Salunkhe,Pediatrician,Mumbai,6482645475
+Dr. Priya Rane,Orthopedic Surgeon,Pune,8942148554
+Dr. Mohan Deshmukh,Endocrinologist,Nagpur,6434565263
+Dr. Kavita Gokhale,Gastroenterologist,Mumbai,6245473437
+Dr. Vinay Menon,Oncologist,Pune,7920492733
+Dr. Tanya Dixit,Pulmonologist,Nagpur,8817584529
+Dr. Arjun Verma,Cardiologist,Mumbai,8000988102
+Dr. Priya Nair,Dermatologist,Pune,8501450261
+Dr. Kunal Patil,Neurologist,Nagpur,8564514254
+Dr. Sneha Joshi,Pediatrician,Mumbai,9638584182
+Dr. Raghav Iyer,Orthopedic Surgeon,Pune,7808067800
+Dr. Meera Rao,Endocrinologist,Nagpur,7255261788
+Dr. Anil Kulkarni,Gastroenterologist,Mumbai,9745278867
+Dr. Vikrant Singh,Oncologist,Pune,8621678703
+Dr. Tanvi Deshmukh,Pulmonologist,Nagpur,6419599964
+Dr. Deepak Chatterjee,Psychiatrist,Mumbai,9671718568
+Dr. Aditi Kapoor,Cardiologist,Pune,9743112795
+Dr. Suresh Bhatia,Dermatologist,Nagpur,8995777989
+Dr. Rahul Choudhary,Neurologist,Mumbai,6423618683
+Dr. Nisha Salunkhe,Pediatrician,Pune,9763841977
+Dr. Priya Rane,Orthopedic Surgeon,Nagpur,7713478069
+Dr. Mohan Deshmukh,Endocrinologist,Mumbai,8450971290
+Dr. Kavita Gokhale,Gastroenterologist,Pune,9303140763
+Dr. Vinay Menon,Oncologist,Nagpur,8367104903
+Dr. Tanya Dixit,Pulmonologist,Mumbai,7148145812
+Dr. Dev Rajput,Psychiatrist,Pune,9297675500
+Dr. Aishwarya Pandey,Cardiologist,Nagpur,7021716705
+Dr. Sneha Jadhav,Dermatologist,Mumbai,7812811726
+Dr. Rohan Nair,Neurologist,Pune,8541912312
+Dr. Neelam Bhosale,Pediatrician,Nagpur,7888279259
+Dr. Prakash Pawar,Orthopedic Surgeon,Mumbai,8912424237
+Dr. Madhuri Kale,Endocrinologist,Pune,7986446190
+Dr. Kunal Desai,Gastroenterologist,Nagpur,8269995258
+Dr. Varun Dani,Oncologist,Mumbai,8795848015
+Dr. Tanisha Iyer,Pulmonologist,Pune,9457679668
+Dr. Dinesh Kulkarni,Psychiatrist,Nagpur,7030906830
+Dr. Aarav Roy,Cardiologist,Mumbai,6018623159
+Dr. Sanya Sharma,Dermatologist,Pune,8613030233
+Dr. Raghav Joshi,Neurologist,Nagpur,7329504354
+Dr. Nandini Iyer,Pediatrician,Mumbai,9381861383
+Dr. Pradeep Rane,Orthopedic Surgeon,Pune,8246678464
+Dr. Manisha Patil,Endocrinologist,Nagpur,9801094716
+Dr. Karan Nair,Gastroenterologist,Mumbai,8315576767
+Dr. Vikrant Sinha,Oncologist,Pune,9344453333
+Dr. Tania Ghosh,Pulmonologist,Nagpur,9570046824
+Dr. Deep Chatterjee,Psychiatrist,Mumbai,8051491548
+Dr. Aishwarya Verma,Cardiologist,Pune,7986900554
+Dr. Suresh Joshi,Dermatologist,Nagpur,7001098928
+Dr. Raghav Patil,Neurologist,Mumbai,8773170114
+Dr. Neha Bhosale,Pediatrician,Pune,6835211263
+Dr. Pranav More,Orthopedic Surgeon,Nagpur,7318402539
+Dr. Meenal Deshmukh,Endocrinologist,Mumbai,9457592834
+Dr. Kiran Kulkarni,Gastroenterologist,Pune,9323602757
+Dr. Vikas Rao,Oncologist,Nagpur,8654431151
+Dr. Tushar Iyer,Pulmonologist,Mumbai,8120950344
+Dr. Disha Singh,Psychiatrist,Pune,7835022490
+Dr. Aarav Gupta,Cardiologist,Nagpur,8939816433
+Dr. Riya Mehta,Dermatologist,Mumbai,9094360792
+Dr. Sameer Patil,Neurologist,Pune,6251167498
+Dr. Neha Sharma,Pediatrician,Nagpur,6831679181
+Dr. Pranav Joshi,Orthopedic Surgeon,Mumbai,7334460395
+Dr. Meera Deshmukh,Endocrinologist,Pune,8322456794
+Dr. Karan Gokhale,Gastroenterologist,Nagpur,6998151293
+Dr. Vikram Menon,Oncologist,Mumbai,6179640372
+Dr. Tanvi Dixit,Pulmonologist,Pune,7396775003
+Dr. Deepak Rajput,Psychiatrist,Nagpur,7386946053
+Dr. Ananya Kapoor,Cardiologist,Mumbai,8605277450
+Dr. Suresh Bhatia,Dermatologist,Pune,8094707288
+Dr. Rahul Choudhary,Neurologist,Nagpur,8846682608
+Dr. Nisha Salunkhe,Pediatrician,Mumbai,9187277415
+Dr. Priya Rane,Orthopedic Surgeon,Pune,9380342286
+Dr. Mohan Deshmukh,Endocrinologist,Nagpur,7419984767
+Dr. Kavita Gokhale,Gastroenterologist,Mumbai,7160809815
+Dr. Vinay Menon,Oncologist,Pune,8417786460
+Dr. Tanya Dixit,Pulmonologist,Nagpur,8044793686
+Dr. Aarav Sharma,Cardiologist,Mumbai,9273910631
+Dr. Riya Desai,Dermatologist,Pune,7912569376
+Dr. Nikhalesh Nilawar,Dentist,Nagpur,7947419279
+Dr. Vaishali Sandeep Deshmukh,Gynecologist,Nagpur,8490092598
+Dr. Pankaj Dwivedi,Hematologist,Nagpur,8971225901
+Dr. Rahul Saxena,Hepatologist,Nagpur,8511939421
+Dr. Amol Ramteke,Infectious Disease Specialist,Nagpur,8050096924
+Dr. Abhay Matte,Neonatologist,Nagpur,7942682656
+Dr. Shivangi Sahewala Mutha,Obstetrician,Nagpur,8511938977
+Dr. Pankaj Gupta,Rheumatologist,Nagpur,0712-2420202
+Dr. Sachin B. Deshmukh,Urologist,Nagpur,0712-7128888
+Dr. Rohit Gupta,Vascular Surgeon,Nagpur,8600888444
+Dr. Vinay Saoji,Plastic Surgeon,Nagpur,8123871168
+Dr. Deepak Andey,General practitioners,Nagpur,8460442875

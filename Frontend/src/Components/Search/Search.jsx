@@ -6,7 +6,7 @@ import Result from "../Result/Result";
 import { sym } from "./data";
 import ShortDisease from "../Result/shortdisease";
 const Search = () => {
-
+  // const valueGabber = useRef("");
   const [isScreenLarge, setIsScreenLarge] = useState(false);
   useEffect(() => {
     function handleResize() {
@@ -14,7 +14,7 @@ const Search = () => {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize(); 
+    handleResize(); // call once initially
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -38,6 +38,7 @@ const Search = () => {
       try {
         const res = await axios.post("http://localhost:5000/", postData);
         console.log(res["data"]);
+        console.log(res["data"])
         console.log("whicihic data");
         const sliceData = res["data"].slice(0, 5);
 
@@ -60,8 +61,8 @@ const Search = () => {
     if (newList.includes(value)) {
       const index = newList.indexOf(value);
       if (index > -1) {
-      
-        newList.splice(index, 1); 
+        // only splice array when item is found
+        newList.splice(index, 1); // 2nd parameter means remove one item only
       }
 
       setTrackList(newList);
@@ -190,25 +191,26 @@ const Search = () => {
       </div>
 
       <div className="resultContainer">
-    
+        {/* Display the top disease separately if it exists */}
         {predictedList.length > 0 && (
           <div className="topDisease">
             <Result
               key={predictedList[0].disease}
               disease={predictedList[0].disease}
               sym={predictedList[0].all_symptoms}
+              doctors={predictedList[0].doctors} 
               updateList={handleClick}
               trackList={trackList}
             />
           </div>
         )}
 
-        
+        {/* Display the remaining diseases in another div */}
         {predictedList.length > 1 && (
           <div className="otherDiseases">
              <h3 className="otherdisease">Other Related Diseases are :</h3>
             {predictedList.slice(1).map((item, index) => {
-              const { disease, all_symptoms } = item;
+             const { disease, all_symptoms, doctors } = item;
               return (
                 <>
                 <ShortDisease
@@ -217,6 +219,7 @@ const Search = () => {
                 symptoms={all_symptoms}
                 updateList={handleClick}
                 trackList={trackList}
+                doctors={doctors} 
               />
               </>
               );
@@ -236,7 +239,7 @@ const Heading = () => {
     }
 
     window.addEventListener("resize", handleResize);
-    handleResize();
+    handleResize(); // call once initially
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);

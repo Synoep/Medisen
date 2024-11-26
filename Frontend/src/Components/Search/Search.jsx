@@ -33,6 +33,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchApi = async () => {
+      if (trackList.length === 0) return; 
       console.log(trackList);
       const postData = { list: trackList };
       try {

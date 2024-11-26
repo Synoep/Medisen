@@ -95,7 +95,7 @@ def get_specialty_for_disease(disease):
     except Exception as e:
         print(f"Error in get_specialty_for_disease: {e}")
         return None 
-def get_doctors_for_disease(disease, city):
+def get_doctors_for_disease(disease):
     try:
         # Get the required specialty for the disease
         specialty = get_specialty_for_disease(disease)
@@ -133,24 +133,21 @@ def index():
     try:
         data_json = request.get_json()
         symptoms = data_json.get("list", [])
-        city = 'Nagpur'  # Get city from the request
+       
+        print("Received symptoms:", symptoms)
+      
 
-        # print("Received symptoms:", symptoms)
-        # print("Received city:", city)
+        if not symptoms:
+            print("Error: Symptoms list cannot be empty.")
+            return jsonify({"error": "Symptoms list cannot be empty."}), 400
 
-        # if not symptoms:
-        #     # print("Error: Symptoms list cannot be empty.")
-        #     # return jsonify({"error": "Symptoms list cannot be empty."}), 400
-
-        # if not city:
-        #     # print("Error: City cannot be empty.")
-        #     # return jsonify({"error": "City cannot be empty."}), 400
+     
         
         top_5_predictions = predict_top_5_diseases(symptoms)
 
-        # if not top_5_predictions:
-        #     print("No prediction made.")
-        #     return jsonify({"error": "No prediction could be made."}), 500
+        if not top_5_predictions:
+            print("No prediction made.")
+            return jsonify({"error": "No prediction could be made."}), 500
 
         json_dict_list = []
 
@@ -158,20 +155,20 @@ def index():
             print(f"Processing disease: {disease}")
             
             all_symptoms = give_symptoms(disease)
-            # if not all_symptoms:
-            #     print(f"No symptoms found for disease: {disease}")
-            #     continue
-            # print(f"Predicted Disease: {disease}, Symptoms: {all_symptoms}")
+            if not all_symptoms:
+                print(f"No symptoms found for disease: {disease}")
+                continue
+            print(f"Predicted Disease: {disease}, Symptoms: {all_symptoms}")
             
             matched_symptoms = [symptom for symptom in symptoms if symptom in all_symptoms]
-            # if not matched_symptoms:
-            #     print(f"No matching symptoms found for disease: {disease}")
-            # else:
-            #     print(f"Matched Symptoms for disease {disease}: {matched_symptoms}")
+            if not matched_symptoms:
+                print(f"No matching symptoms found for disease: {disease}")
+            else:
+                print(f"Matched Symptoms for disease {disease}: {matched_symptoms}")
             
-            doctor_info = get_doctors_for_disease(disease, city)
+            doctor_info = get_doctors_for_disease(disease)
             if not doctor_info:
-                print(f"No doctors found for disease: {disease} in city: {city}")
+                print(f"No doctors found for disease: {disease}")
             else:
                 for doctor in doctor_info:
                     print(f"Name: {doctor['name']}, Speciality: {doctor['Specialty']}, Contact: {doctor['contact']}, City: {doctor['city']}")
@@ -184,10 +181,10 @@ def index():
             }
             json_dict_list.append(json_dict)
 
-        # if not json_dict_list:
-        #     print("No predictions or doctor information available.")
-        # else:
-        #     print("Final JSON Response:", json_dict_list)
+        if not json_dict_list:
+            print("No predictions or doctor information available.")
+        else:
+            print("Final JSON Response:", json_dict_list)
 
         return jsonify(json_dict_list)
 

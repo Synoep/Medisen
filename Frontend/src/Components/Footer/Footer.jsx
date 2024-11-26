@@ -31,7 +31,7 @@ const Footer = () => {
                 fontWeight: "400",
               }}
             >
-              Copyright ©2023. All Rights Reserved.
+              Copyright ©2024. All Rights Reserved.
             </h4>
           </div>
           <div

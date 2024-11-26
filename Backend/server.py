@@ -78,8 +78,8 @@ def predict_top_5_diseases(symptoms):
     
 def get_specialty_for_disease(disease):
     try:
-        # Load the disease-specialty mapping from a CSV file
-        df_specialty = pd.read_csv("disease_speciality.csv")  # Replace with the correct file path
+      
+        df_specialty = pd.read_csv("disease_speciality.csv") 
         
         # Check if the disease exists in the dataset
         specialty_row = df_specialty[df_specialty['Disease'].str.contains(disease, case=False, na=False)]
@@ -195,3 +195,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    

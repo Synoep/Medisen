@@ -36,8 +36,8 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
           })}
       </div>
 
-      {console.log(doctors)}
-      {doctors && doctors.length > 0 && (
+      {/* Doctors Section */}
+      {doctors && doctors.length > 0 ? (
         <div className="doctorInfo">
           <h4>Recommended Doctors:</h4>
           <div className="doctorList">
@@ -47,7 +47,7 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
                   <div key={index} className="doctorCard">
                     <p className="doctorName">{doctor.name}</p>
                     <p className="doctorSpecialty">{doctor.contact}</p>
-                    
+                    <p className="doctorLocation">{doctor.city}</p>
                   </div>
                 ))}
               </div>
@@ -56,11 +56,15 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
                 <div key={index} className="doctorCard">
                   <p className="doctorName">{doctor.name}</p>
                   <p className="doctorSpecialty">{doctor.specialty}</p>
-                  <p className="doctorLocation">{doctor.location}</p>
+                  <p className="doctorLocation">{doctor.city}</p>
                 </div>
               ))
             )}
           </div>
+        </div>
+      ) : (
+        <div className="noDoctorsMessage">
+          <p>No doctors available for this disease.</p>
         </div>
       )}
     </div>

@@ -25,7 +25,7 @@ const ShortDisease = ({ disease, symptoms, updateList, trackList, doctors }) => 
         </div>
       ) : (
         <div className="noDoctorsMessage">
-          <p>No doctors available for this disease .</p>
+          <p>No doctors available for this disease in Nagpur .</p>
         </div>
       )}
     </div>

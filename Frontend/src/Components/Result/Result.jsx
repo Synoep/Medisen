@@ -46,8 +46,9 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
                 {doctors.map((doctor, index) => (
                   <div key={index} className="doctorCard">
                     <p className="doctorName">{doctor.name}</p>
-                    <p className="doctorSpecialty">{doctor.contact}</p>
                     <p className="doctorLocation">{doctor.city}</p>
+                    <p className="doctorSpecialty">{doctor.contact}</p>
+
                   </div>
                 ))}
               </div>
@@ -55,8 +56,9 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
               doctors.map((doctor, index) => (
                 <div key={index} className="doctorCard">
                   <p className="doctorName">{doctor.name}</p>
-                  <p className="doctorSpecialty">{doctor.specialty}</p>
                   <p className="doctorLocation">{doctor.city}</p>
+                  <p className="doctorSpecialty">{doctor.specialty}</p>
+                 
                 </div>
               ))
             )}
@@ -64,7 +66,7 @@ const Result = ({ disease, sym = [], doctors = [], updateList, trackList }) => {
         </div>
       ) : (
         <div className="noDoctorsMessage">
-          <p>No doctors available for this disease.</p>
+          <p>No doctors available for this disease in Nagpur.</p>
         </div>
       )}
     </div>

@@ -85,4 +85,8 @@ npm run dev
 
 <br> <br>
 
-![image](https://github.com/user-attachments/assets/5ac6ac35-a80f-49b6-8bd0-8ee7d4ecba7f)
+![Screenshot 2024-11-26 105618](https://github.com/user-attachments/assets/85ac9ffe-b86c-42bb-a41b-15713d5524ed)
+
+<br> <br>
+
+![Screenshot 2024-11-26 110050](https://github.com/user-attachments/assets/fdd0a0d5-ac5a-4615-ba7e-cdcdc577352a)

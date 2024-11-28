@@ -81,14 +81,13 @@ def get_specialty_for_disease(disease):
       
         df_specialty = pd.read_csv("disease_speciality.csv") 
         
-        # Check if the disease exists in the dataset
+     
         specialty_row = df_specialty[df_specialty['Disease'].str.contains(disease, case=False, na=False)]
         
         if specialty_row.empty:
             print(f"No specialty found for disease: {disease}")
             return None
        
-        # Return the specialty
         specialty = specialty_row.iloc[0]['Specialty']
         return specialty
     

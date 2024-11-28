@@ -77,11 +77,11 @@ npm run dev
 ---
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/a2d304a8-a2d2-413e-b254-4cabc94cf5ee)
+![Screenshot 2024-11-25 154911](https://github.com/user-attachments/assets/96e88caf-876a-4c15-adee-558ca5b8e91e)
+
 
 <br> <br>
-
-![image](https://github.com/user-attachments/assets/b9722ee6-4eca-4b19-92e8-277dbcd50fd7)
+![Screenshot 2024-11-26 105926](https://github.com/user-attachments/assets/033d8472-8177-4da7-9c67-0c9d45a2be8a)
 
 <br> <br>
 

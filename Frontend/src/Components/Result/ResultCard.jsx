@@ -5,8 +5,10 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import ChatIcon from "@mui/icons-material/Chat";
 
-const ResultCard = ({ disease, confidence, symptoms, specialty }) => (
+const ResultCard = ({ disease, confidence, symptoms, specialty, onAskAssistant, onFindDoctor }) => (
   <Card elevation={4} sx={{ mb: 3, borderRadius: 3, animation: 'fadeIn 0.7s' }}>
     <CardContent>
       <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
@@ -30,6 +32,27 @@ const ResultCard = ({ disease, confidence, symptoms, specialty }) => (
         {symptoms && symptoms.map((sym, idx) => (
           <Chip key={idx} label={sym} variant="outlined" color="primary" sx={{ mb: 0.5 }} />
         ))}
+      </Stack>
+      <Stack direction="row" justifyContent="flex-end" spacing={1} sx={{ mt: 2 }}>
+        {onAskAssistant && (
+          <Button
+            variant="outlined"
+            startIcon={<ChatIcon />}
+            onClick={() => onAskAssistant(`Tell me about ${disease} and how to cure or manage it.`)}
+          >
+            Ask the Assistant about this disease
+          </Button>
+        )}
+        {onFindDoctor && (
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<LocalHospitalIcon />}
+            onClick={onFindDoctor}
+          >
+            Find a Doctor
+          </Button>
+        )}
       </Stack>
     </CardContent>
   </Card>

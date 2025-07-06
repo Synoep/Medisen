@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,6 +23,8 @@ import ResultCard from "./Components/Result/ResultCard";
 import Chatbot from "./Components/Chatbot/Chatbot";
 import ChatIcon from "@mui/icons-material/Chat";
 import Tooltip from "@mui/material/Tooltip";
+import FindDoctor from "./Components/DoctorFinder/FindDoctor";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
 const getTheme = (mode) => createTheme({
   palette: {
@@ -42,6 +44,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [chatOpen, setChatOpen] = useState(false);
+  const [chatPrompt, setChatPrompt] = useState("");
+  const [doctorFinderOpen, setDoctorFinderOpen] = useState(false);
+  const [doctorFinderDisease, setDoctorFinderDisease] = useState("");
+  const [allDoctors, setAllDoctors] = useState([]);
   const theme = React.useMemo(() => getTheme(mode), [mode]);
 
   const handlePredict = async (selectedSymptoms) => {
@@ -63,6 +69,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    axios.get("http://localhost:10000/doctors").then(res => {
+      setAllDoctors(res.data);
+    }).catch(() => setAllDoctors([]));
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -75,17 +87,20 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: 1 }}>
               Medisen
             </Typography>
-            <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#about">
+            {/* <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#about">
               About
             </Button>
             <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#history">
               History
-            </Button>
+            </Button> */}
             <Tooltip title="Medisen HealthBot">
               <Button color="inherit" startIcon={<ChatIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => setChatOpen(true)}>
                 Health Assistant
               </Button>
             </Tooltip>
+            <Button color="inherit" startIcon={<LocalHospitalIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => { setDoctorFinderDisease(""); setDoctorFinderOpen(true); }}>
+              Find a Doctor
+            </Button>
             <IconButton sx={{ ml: 2 }} onClick={() => setMode(mode === "light" ? "dark" : "light") } color="inherit">
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
@@ -119,7 +134,9 @@ function App() {
                   Prediction Results
                 </Typography>
                 {results.map((res, idx) => (
-                  <ResultCard key={idx} {...res} />
+                  <ResultCard key={idx} {...res} onAskAssistant={(prompt) => { setChatPrompt(prompt); setChatOpen(true); }}
+                    onFindDoctor={() => { setDoctorFinderDisease(res.disease); setDoctorFinderOpen(true); }}
+                  />
                 ))}
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                   <Button variant="outlined" startIcon={<ChatIcon />} onClick={() => setChatOpen(true)}>
@@ -130,7 +147,8 @@ function App() {
             )}
           </Box>
         </Container>
-        <Chatbot open={chatOpen} onClose={() => setChatOpen(false)} />
+        <Chatbot open={chatOpen} onClose={() => { setChatOpen(false); setChatPrompt(""); }} initialPrompt={chatPrompt} />
+        <FindDoctor open={doctorFinderOpen} onClose={() => setDoctorFinderOpen(false)} disease={doctorFinderDisease} doctors={allDoctors} />
         <Box component="footer" sx={{ py: 3, px: 2, mt: "auto", background: theme.palette.mode === "dark" ? "#181c2a" : "#e3f0ff", textAlign: "center" }}>
           <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} Medisen &mdash; Powered by AI. | <Link href="#about" color="inherit">About</Link>

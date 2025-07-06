@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import ChatIcon from "@mui/icons-material/Chat";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
@@ -19,6 +20,20 @@ const Chatbot = ({ open, onClose, initialPrompt }) => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (open && initialPrompt && messages.length === 1) {
+      setMessages([
+        { role: "assistant", content: initialPrompt }
+      ]);
+    }
+  }, [open, initialPrompt]);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -46,11 +61,6 @@ const Chatbot = ({ open, onClose, initialPrompt }) => {
       setMessages([...newMessages, { role: "assistant", content: "Sorry, there was an error contacting the assistant." }]);
     } finally {
       setLoading(false);
-      setTimeout(() => {
-        if (contentRef.current) {
-          contentRef.current.scrollTop = contentRef.current.scrollHeight;
-        }
-      }, 100);
     }
   };
 
@@ -62,24 +72,32 @@ const Chatbot = ({ open, onClose, initialPrompt }) => {
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        Health Assistant
-        <IconButton onClick={onClose} size="small">
+    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth PaperProps={{
+      sx: { borderRadius: 3, overflow: 'hidden', boxShadow: 8 }
+    }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: 'primary.main', color: 'primary.contrastText', px: 2, py: 1.5 }}>
+        <ChatIcon sx={{ mr: 1 }} />
+        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
+          Health Assistant
+        </Typography>
+        <IconButton onClick={onClose} size="small" sx={{ color: 'primary.contrastText' }}>
           <CloseIcon />
         </IconButton>
-      </DialogTitle>
-      <DialogContent dividers sx={{ minHeight: 300, maxHeight: 400, p: 2 }} ref={contentRef}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+      </Box>
+      <DialogContent dividers sx={{ minHeight: 320, maxHeight: 400, p: 2, bgcolor: '#f7fafd' }}>
+        <Box ref={contentRef} sx={{ display: 'flex', flexDirection: 'column', gap: 1, height: 300, overflowY: 'auto', pr: 1 }}>
           {messages.map((msg, idx) => (
             <Box key={idx} sx={{ alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start', maxWidth: '90%' }}>
               <Typography
                 variant="body2"
                 sx={{
-                  bgcolor: msg.role === 'user' ? 'primary.main' : 'grey.200',
+                  bgcolor: msg.role === 'user' ? 'primary.light' : 'grey.200',
                   color: msg.role === 'user' ? 'primary.contrastText' : 'text.primary',
                   px: 2, py: 1, borderRadius: 2, mb: 0.5,
                   whiteSpace: 'pre-line',
+                  boxShadow: 1,
+                  fontSize: '1rem',
+                  fontFamily: 'inherit',
                 }}
               >
                 {msg.content}
@@ -88,7 +106,7 @@ const Chatbot = ({ open, onClose, initialPrompt }) => {
           ))}
         </Box>
       </DialogContent>
-      <DialogActions sx={{ p: 2 }}>
+      <DialogActions sx={{ p: 2, bgcolor: '#f7fafd', borderTop: '1px solid #e0e0e0' }}>
         <TextField
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -99,8 +117,9 @@ const Chatbot = ({ open, onClose, initialPrompt }) => {
           minRows={1}
           maxRows={3}
           disabled={loading}
+          sx={{ bgcolor: 'white', borderRadius: 2 }}
         />
-        <Button onClick={sendMessage} disabled={loading || !input.trim()} variant="contained">
+        <Button onClick={sendMessage} disabled={loading || !input.trim()} variant="contained" sx={{ ml: 1, px: 3, fontWeight: 700 }}>
           Send
         </Button>
       </DialogActions>

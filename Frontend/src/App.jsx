@@ -25,6 +25,8 @@ import ChatIcon from "@mui/icons-material/Chat";
 import Tooltip from "@mui/material/Tooltip";
 import FindDoctor from "./Components/DoctorFinder/FindDoctor";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import Feedback from "./Components/Feedback/Feedback";
+import FeedbackIcon from "@mui/icons-material/Feedback";
 
 const getTheme = (mode) => createTheme({
   palette: {
@@ -48,6 +50,7 @@ function App() {
   const [doctorFinderOpen, setDoctorFinderOpen] = useState(false);
   const [doctorFinderDisease, setDoctorFinderDisease] = useState("");
   const [allDoctors, setAllDoctors] = useState([]);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const theme = React.useMemo(() => getTheme(mode), [mode]);
 
   const handlePredict = async (selectedSymptoms) => {
@@ -101,6 +104,9 @@ function App() {
             <Button color="inherit" startIcon={<LocalHospitalIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => { setDoctorFinderDisease(""); setDoctorFinderOpen(true); }}>
               Find a Doctor
             </Button>
+            <Button color="inherit" startIcon={<FeedbackIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => setFeedbackOpen(true)}>
+              Feedback
+            </Button>
             <IconButton sx={{ ml: 2 }} onClick={() => setMode(mode === "light" ? "dark" : "light") } color="inherit">
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
@@ -149,6 +155,7 @@ function App() {
         </Container>
         <Chatbot open={chatOpen} onClose={() => { setChatOpen(false); setChatPrompt(""); }} initialPrompt={chatPrompt} />
         <FindDoctor open={doctorFinderOpen} onClose={() => setDoctorFinderOpen(false)} disease={doctorFinderDisease} doctors={allDoctors} />
+        <Feedback open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
         <Box component="footer" sx={{ py: 3, px: 2, mt: "auto", background: theme.palette.mode === "dark" ? "#181c2a" : "#e3f0ff", textAlign: "center" }}>
           <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} Medisen &mdash; Powered by AI. | <Link href="#about" color="inherit">About</Link>

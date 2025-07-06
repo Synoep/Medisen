@@ -42,6 +42,9 @@ const FindDoctor = ({ open, onClose, disease }) => {
   const [city, setCity] = useState("Nagpur");
   const [doctors, setDoctors] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [bookingDoctor, setBookingDoctor] = useState(null);
+  const [booking, setBooking] = useState({ name: "", contact: "", datetime: "" });
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -59,7 +62,25 @@ const FindDoctor = ({ open, onClose, disease }) => {
     setCity("Nagpur");
     setDoctors([]);
     setSearched(false);
+    setBookingDoctor(null);
+    setBooking({ name: "", contact: "", datetime: "" });
+    setBookingSuccess(false);
     onClose();
+  };
+
+  const handleBook = (doctor) => {
+    setBookingDoctor(doctor);
+    setBooking({ name: "", contact: "", datetime: "" });
+    setBookingSuccess(false);
+  };
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    // Save booking in localStorage (for demo)
+    const allBookings = JSON.parse(localStorage.getItem("doctorBookings") || "[]");
+    allBookings.push({ ...booking, doctor: bookingDoctor });
+    localStorage.setItem("doctorBookings", JSON.stringify(allBookings));
+    setBookingSuccess(true);
   };
 
   return (
@@ -96,6 +117,9 @@ const FindDoctor = ({ open, onClose, disease }) => {
                     <Typography variant="body2" color="text.secondary">Specialty: {doc.specialty}</Typography>
                     <Typography variant="body2">City: {doc.city}</Typography>
                     <Typography variant="body2">Contact: {doc.contact}</Typography>
+                    <Button variant="outlined" sx={{ mt: 1 }} onClick={() => handleBook(doc)}>
+                      Book Appointment
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -109,6 +133,55 @@ const FindDoctor = ({ open, onClose, disease }) => {
       <DialogActions>
         <Button onClick={handleClose} color="secondary">Close</Button>
       </DialogActions>
+      {/* Booking Modal */}
+      <Dialog open={!!bookingDoctor} onClose={() => setBookingDoctor(null)} maxWidth="xs" fullWidth>
+        <DialogTitle>Book Appointment</DialogTitle>
+        <DialogContent dividers>
+          {bookingSuccess ? (
+            <Typography color="success.main" sx={{ py: 2 }}>
+              Appointment booked successfully with {bookingDoctor?.name}!
+            </Typography>
+          ) : (
+            <form onSubmit={handleBookingSubmit}>
+              <Typography variant="subtitle1" sx={{ mb: 2 }}>
+                Doctor: <b>{bookingDoctor?.name}</b>
+              </Typography>
+              <TextField
+                label="Your Name"
+                value={booking.name}
+                onChange={e => setBooking({ ...booking, name: e.target.value })}
+                fullWidth
+                sx={{ mb: 2 }}
+                required
+              />
+              <TextField
+                label="Your Contact Number"
+                value={booking.contact}
+                onChange={e => setBooking({ ...booking, contact: e.target.value })}
+                fullWidth
+                sx={{ mb: 2 }}
+                required
+              />
+              <TextField
+                label="Preferred Date & Time"
+                type="datetime-local"
+                value={booking.datetime}
+                onChange={e => setBooking({ ...booking, datetime: e.target.value })}
+                fullWidth
+                sx={{ mb: 2 }}
+                InputLabelProps={{ shrink: true }}
+                required
+              />
+              <Button type="submit" variant="contained" fullWidth>
+                Confirm Booking
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setBookingDoctor(null)} color="secondary">Close</Button>
+        </DialogActions>
+      </Dialog>
     </Dialog>
   );
 };

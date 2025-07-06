@@ -20,6 +20,9 @@ import Footer from "./Components/Footer/Footer";
 import Search from "./Components/Search/Search";
 import SymptomInput from "./Components/Search/SymptomInput";
 import ResultCard from "./Components/Result/ResultCard";
+import Chatbot from "./Components/Chatbot/Chatbot";
+import ChatIcon from "@mui/icons-material/Chat";
+import Tooltip from "@mui/material/Tooltip";
 
 const getTheme = (mode) => createTheme({
   palette: {
@@ -38,6 +41,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [chatOpen, setChatOpen] = useState(false);
   const theme = React.useMemo(() => getTheme(mode), [mode]);
 
   const handlePredict = async (selectedSymptoms) => {
@@ -77,6 +81,11 @@ function App() {
             <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#history">
               History
             </Button>
+            <Tooltip title="Medisen HealthBot">
+              <Button color="inherit" startIcon={<ChatIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => setChatOpen(true)}>
+                Health Assistant
+              </Button>
+            </Tooltip>
             <IconButton sx={{ ml: 2 }} onClick={() => setMode(mode === "light" ? "dark" : "light") } color="inherit">
               {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
@@ -112,11 +121,21 @@ function App() {
                 {results.map((res, idx) => (
                   <ResultCard key={idx} {...res} />
                 ))}
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                  <Button variant="outlined" startIcon={<ChatIcon />} onClick={() => setChatOpen(true)}>
+                    Ask Assistant
+                  </Button>
+                </Box>
               </Box>
             )}
           </Box>
         </Container>
-        
+        <Chatbot open={chatOpen} onClose={() => setChatOpen(false)} />
+        <Box component="footer" sx={{ py: 3, px: 2, mt: "auto", background: theme.palette.mode === "dark" ? "#181c2a" : "#e3f0ff", textAlign: "center" }}>
+          <Typography variant="body2" color="text.secondary">
+            © {new Date().getFullYear()} Medisen &mdash; Powered by AI. | <Link href="#about" color="inherit">About</Link>
+          </Typography>
+        </Box>
       </Box>
     </ThemeProvider>
   );

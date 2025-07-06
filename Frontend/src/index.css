@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+/* Reset and minimal global styles for MUI */
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background: #f4f8fb;
+}
+
+>>>>>>> 20dfb1f (updated)
 *,
 ::after,
 ::before {
@@ -160,4 +170,12 @@ p {
 
 .otherdisease{
   margin: 20px 20px 20px 0;
+<<<<<<< HEAD
+=======
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+>>>>>>> 20dfb1f (updated)
 }

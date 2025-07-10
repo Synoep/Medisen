@@ -27,6 +27,8 @@ import FindDoctor from "./Components/DoctorFinder/FindDoctor";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import Feedback from "./Components/Feedback/Feedback";
 import FeedbackIcon from "@mui/icons-material/Feedback";
+import FeedbackPage from "./Components/Feedback/FeedbackPage";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 const getTheme = (mode) => createTheme({
   palette: {
@@ -40,6 +42,56 @@ const getTheme = (mode) => createTheme({
   },
 });
 
+function HomePage(props) {
+  return (
+    <>
+      <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "80vh" }}>
+        <Paper elevation={6} sx={{ p: 5, mt: 8, width: "100%", maxWidth: 700, borderRadius: 4, textAlign: "center", animation: "fadeIn 1s" }}>
+          <Typography variant="h3" gutterBottom sx={{ fontWeight: 800, color: "primary.main", mb: 2 }}>
+            Welcome To Medisen
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 4, color: "text.secondary" }}>
+            Enter your symptoms to predict possible diseases.
+          </Typography>
+          <SymptomInput onSubmit={props.handlePredict} />
+        </Paper>
+        <Box sx={{ width: "100%", maxWidth: 700, mt: 4 }}>
+          {props.loading && (
+            <Typography align="center" sx={{ mt: 4 }} color="primary">
+              Predicting diseases...
+            </Typography>
+          )}
+          {props.error && (
+            <Typography align="center" sx={{ mt: 4 }} color="error">
+              {props.error}
+            </Typography>
+          )}
+          {!props.loading && !props.error && props.results.length > 0 && (
+            <Box>
+              <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
+                Prediction Results
+              </Typography>
+              {props.results.map((res, idx) => (
+                <ResultCard key={idx} {...res} onAskAssistant={(prompt) => { props.setChatPrompt(prompt); props.setChatOpen(true); }}
+                  onFindDoctor={() => { props.setDoctorFinderDisease(res.disease); props.setDoctorFinderOpen(true); }}
+                />
+              ))}
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <Button variant="outlined" startIcon={<ChatIcon />} onClick={() => props.setChatOpen(true)}>
+                  Ask Assistant
+                </Button>
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </Container>
+      <Chatbot open={props.chatOpen} onClose={() => { props.setChatOpen(false); props.setChatPrompt(""); }} initialPrompt={props.chatPrompt} />
+      <FindDoctor open={props.doctorFinderOpen} onClose={() => props.setDoctorFinderOpen(false)} disease={props.doctorFinderDisease} doctors={props.allDoctors} />
+      <Feedback open={props.feedbackOpen} onClose={() => props.setFeedbackOpen(false)} />
+    </>
+  );
+}
+
 function App() {
   const [mode, setMode] = useState("light");
   const [results, setResults] = useState([]);
@@ -52,6 +104,7 @@ function App() {
   const [allDoctors, setAllDoctors] = useState([]);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const theme = React.useMemo(() => getTheme(mode), [mode]);
+  const navigate = useNavigate();
 
   const handlePredict = async (selectedSymptoms) => {
     setLoading(true);
@@ -90,12 +143,6 @@ function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: 1 }}>
               Medisen
             </Typography>
-            {/* <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#about">
-              About
-            </Button>
-            <Button color="inherit" sx={{ mx: 1 }} component={Link} href="#history">
-              History
-            </Button> */}
             <Tooltip title="Medisen HealthBot">
               <Button color="inherit" startIcon={<ChatIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => setChatOpen(true)}>
                 Health Assistant
@@ -104,7 +151,7 @@ function App() {
             <Button color="inherit" startIcon={<LocalHospitalIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => { setDoctorFinderDisease(""); setDoctorFinderOpen(true); }}>
               Find a Doctor
             </Button>
-            <Button color="inherit" startIcon={<FeedbackIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => setFeedbackOpen(true)}>
+            <Button color="inherit" startIcon={<FeedbackIcon />} sx={{ mx: 1, fontWeight: 600, fontSize: '1.15rem', textTransform: 'none' }} onClick={() => navigate('/feedback')}>
               Feedback
             </Button>
             <IconButton sx={{ ml: 2 }} onClick={() => setMode(mode === "light" ? "dark" : "light") } color="inherit">
@@ -113,49 +160,26 @@ function App() {
             <Switch checked={mode === "dark"} onChange={() => setMode(mode === "light" ? "dark" : "light")} color="default" />
           </Toolbar>
         </AppBar>
-        <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "80vh" }}>
-          <Paper elevation={6} sx={{ p: 5, mt: 8, width: "100%", maxWidth: 700, borderRadius: 4, textAlign: "center", animation: "fadeIn 1s" }}>
-            <Typography variant="h3" gutterBottom sx={{ fontWeight: 800, color: "primary.main", mb: 2 }}>
-              Welcome To Medisen
-            </Typography>
-            <Typography variant="h6" sx={{ mb: 4, color: "text.secondary" }}>
-              Enter your symptoms to predict possible diseases.
-            </Typography>
-            <SymptomInput onSubmit={handlePredict} />
-          </Paper>
-          <Box sx={{ width: "100%", maxWidth: 700, mt: 4 }}>
-            {loading && (
-              <Typography align="center" sx={{ mt: 4 }} color="primary">
-                Predicting diseases...
-              </Typography>
-            )}
-            {error && (
-              <Typography align="center" sx={{ mt: 4 }} color="error">
-                {error}
-              </Typography>
-            )}
-            {!loading && !error && results.length > 0 && (
-              <Box>
-                <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
-                  Prediction Results
-                </Typography>
-                {results.map((res, idx) => (
-                  <ResultCard key={idx} {...res} onAskAssistant={(prompt) => { setChatPrompt(prompt); setChatOpen(true); }}
-                    onFindDoctor={() => { setDoctorFinderDisease(res.disease); setDoctorFinderOpen(true); }}
-                  />
-                ))}
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                  <Button variant="outlined" startIcon={<ChatIcon />} onClick={() => setChatOpen(true)}>
-                    Ask Assistant
-                  </Button>
-                </Box>
-              </Box>
-            )}
-          </Box>
-        </Container>
-        <Chatbot open={chatOpen} onClose={() => { setChatOpen(false); setChatPrompt(""); }} initialPrompt={chatPrompt} />
-        <FindDoctor open={doctorFinderOpen} onClose={() => setDoctorFinderOpen(false)} disease={doctorFinderDisease} doctors={allDoctors} />
-        <Feedback open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
+        <Routes>
+          <Route path="/" element={<HomePage
+            handlePredict={handlePredict}
+            loading={loading}
+            error={error}
+            results={results}
+            chatOpen={chatOpen}
+            setChatOpen={setChatOpen}
+            chatPrompt={chatPrompt}
+            setChatPrompt={setChatPrompt}
+            doctorFinderOpen={doctorFinderOpen}
+            setDoctorFinderOpen={setDoctorFinderOpen}
+            doctorFinderDisease={doctorFinderDisease}
+            setDoctorFinderDisease={setDoctorFinderDisease}
+            allDoctors={allDoctors}
+            feedbackOpen={feedbackOpen}
+            setFeedbackOpen={setFeedbackOpen}
+          />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
+        </Routes>
         <Box component="footer" sx={{ py: 3, px: 2, mt: "auto", background: theme.palette.mode === "dark" ? "#181c2a" : "#e3f0ff", textAlign: "center" }}>
           <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} Medisen &mdash; Powered by AI. | <Link href="#about" color="inherit">About</Link>
